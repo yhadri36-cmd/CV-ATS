@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مسار CV | مشروع ٣ — صانع السيرة الذاتية المتوافق مع ATS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --border: #cbd5e1;
+      --text: #1e293b;
+      --muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .brand span {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-light {
+      background: #e2e8f0;
+      color: var(--primary);
+    }
+
+    .btn-light:hover {
+      background: #cbd5e1;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: #f8fafc;
+    }
+
+    .btn-outline:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-voice {
+      background: #0f766e;
+      color: #ffffff;
+    }
+
+    .btn-voice:hover {
+      background: #115e59;
+    }
+
+    .btn-voice.listening {
+      background: #b91c1c;
+      color: #ffffff;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .btn-danger:hover {
+      background: #fecaca;
+    }
+
+    .container {
+      max-width: 1380px;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    }
+
+    .panel h2 {
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--bg);
+      color: var(--primary);
+    }
+
+    .main-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .main-tab-btn {
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .main-tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .main-tab-btn.active .tab-num {
+      background: #ffffff;
+      color: var(--accent);
+    }
+
+    .ats-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+
+    .ats-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .ats-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .ats-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.25s ease, background-color 0.25s ease;
+    }
+
+    .ats-tips {
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding-inline-start: 16px;
+    }
+
+    .template-switch {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tpl-btn {
+      padding: 9px 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tpl-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .density-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .density-row select {
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    .lang-box,
+    .sub-box {
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .lang-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .lang-box-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .step-badge {
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .single-question-card {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .single-question-text {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.65;
+      white-space: pre-line;
+    }
+
+    .skip-hint {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #1e40af;
+    }
+
+    .email-helpers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .mini-chip {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--primary);
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-family: 'Inter', 'Cairo', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      direction: ltr;
+    }
+
+    .mini-chip:hover {
+      background: #eff6ff;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .voice-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .toggle-check {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      color: var(--accent) !important;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-check input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .field input[type="text"],
+    .field input[type="email"],
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: #ffffff;
+    }
+
+    .field input:disabled,
+    .field textarea:disabled {
+      background: #f1f5f9;
+      color: #94a3b8;
+    }
+
+    .field textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .feedback-msg {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #15803d;
+      min-height: 20px;
+      margin-top: 8px;
+    }
+
+    .hidden-block {
+      display: none !important;
+    }
+
+    .preview-pages {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .cv-sheet {
+      background: #ffffff;
+      color: #0f172a;
+      width: 100%;
+      padding: 32px 36px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      min-height: 820px;
+      font-family: 'Cairo', 'Inter', sans-serif;
+    }
+
+    .cv-sheet.compact {
+      padding: 22px 28px;
+      font-size: 0.94rem;
+    }
+
+    .cv-sheet.sheet-rtl {
+      direction: rtl;
+      text-align: right;
+      font-family: 'Cairo', 'Inter', sans-serif;
+    }
+
+    .cv-sheet.sheet-ltr {
+      direction: ltr;
+      text-align: left;
+      font-family: 'Inter', 'Cairo', sans-serif;
+    }
+
+    .cv-header {
+      width: 100%;
+      text-align: center;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .cv-name {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+      width: 100%;
+      text-align: center;
+    }
+
+    .cv-role {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 3px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .cv-contact {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #334155;
+      margin-top: 6px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .phone-ltr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-family: 'Inter', 'Cairo', sans-serif;
+      display: inline-block;
+    }
+
+    .cv-section {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .cv-sheet.compact .cv-section {
+      margin-bottom: 9px;
+    }
+
+    .cv-section-title {
+      width: 100%;
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 3px;
+      margin-bottom: 7px;
+      text-align: start;
+    }
+
+    .cv-list {
+      width: 100%;
+      padding-inline-start: 22px;
+      list-style-position: outside;
+      font-size: 0.89rem;
+      text-align: start;
+    }
+
+    .cv-list li {
+      margin-bottom: 4px;
+      text-align: start;
+    }
+
+    .cv-text {
+      max-width: 72%;
+      font-size: 0.89rem;
+      white-space: pre-line;
+      text-align: start;
+      line-height: 1.7;
+    }
+
+    .cv-sheet.compact .cv-text {
+      max-width: 76%;
+    }
+
+    @media (max-width: 960px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2,
+      .main-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .cv-text,
+      .cv-sheet.compact .cv-text {
+        max-width: 100%;
+      }
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0mm;
+    }
+
+    @media print {
+      header,
+      .editor-panel,
+      .preview-heading,
+      footer,
+      nav,
+      aside,
+      .watermark,
+      [class*="watermark"],
+      [id*="watermark"],
+      [class*="footer"],
+      [id*="footer"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      html,
+      body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .container,
+      .preview-panel,
+      .preview-pages {
+        display: block !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        max-width: 210mm !important;
+        gap: 0 !important;
+      }
+
+      .cv-sheet,
+      .cv-sheet.compact {
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 14mm 16mm !important;
+        margin: 0 !important;
+        min-height: 0 !important;
+        height: auto !important;
+        width: 210mm !important;
+        max-width: 210mm !important;
+        box-sizing: border-box !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .cv-sheet:last-child {
+        break-after: auto !important;
+        page-break-after: auto !important;
+      }
+
+      .cv-sheet.page-break-after {
+        break-after: page !important;
+        page-break-after: always !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>مسار CV — مشروع ٣</h1>
+      <span>صانع السيرة الذاتية المتوافق مع أنظمة ATS</span>
+    </div>
+    <div class="toolbar">
+      <button class="btn btn-light" type="button" onclick="fillSample()">بيانات تجريبية</button>
+      <button class="btn btn-danger" type="button" onclick="clearForm()">مسح البيانات</button>
+      <button class="btn btn-primary" type="button" onclick="printCleanCV()">طباعة / حفظ PDF</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel editor-panel">
+      <div class="main-tabs">
+        <button id="tab-self" class="main-tab-btn active" type="button" onclick="switchMainTab('self')">
+          <span class="tab-num">1</span>
+          <span>صمّم السيرة الذاتية بنفسك</span>
+        </button>
+        <button id="tab-ai" class="main-tab-btn" type="button" onclick="switchMainTab('ai')">
+          <span class="tab-num">2</span>
+          <span>صمّم السيرة الذاتية مع الذكاء الاصطناعي</span>
+        </button>
+      </div>
+
+      <div class="ats-box">
+        <div class="ats-top">
+          <span>مؤشر جاهزية ATS</span>
+          <span id="atsScore">0%</span>
+        </div>
+        <div class="ats-bar">
+          <div id="atsFill" class="ats-fill"></div>
+        </div>
+        <ul id="atsTips" class="ats-tips"></ul>
+      </div>
+
+      <div class="template-switch">
+        <button id="btn-ar" class="tpl-btn active" type="button" onclick="setTemplate('ar')">نموذج عربي</button>
+        <button id="btn-en" class="tpl-btn" type="button" onclick="setTemplate('en')">English ATS</button>
+        <button id="btn-bi" class="tpl-btn" type="button" onclick="setTemplate('bi')">ثنائي اللغة (صفحتان)</button>
+      </div>
+
+      <div class="density-row">
+        <label for="densitySelect">كثافة المحتوى والمسافات:</label>
+        <select id="densitySelect" onchange="setDensity(this.value)">
+          <option value="normal">مريح (افتراضي)</option>
+          <option value="compact">مضغوط (مناسب لصفحة واحدة)</option>
+        </select>
+      </div>
+
+      <!-- القسم الأول: صمّم السيرة الذاتية بنفسك -->
+      <div id="section-self">
+        <h2>القسم الأول: صمّم السيرة الذاتية بنفسك</h2>
+
+        <div class="field">
+          <div class="field-header">
+            <label for="email">البريد الإلكتروني / Email</label>
+          </div>
+          <input id="email" type="email" placeholder="mohammed@example.com" oninput="onInputChange()" />
+        </div>
+
+        <div id="arEditorBox" class="lang-box">
+          <div class="lang-box-header">
+            <div class="lang-box-title">البيانات العربية (الصفحة الأولى)</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <div class="field-header">
+                <label for="arName">الاسم الثنائي</label>
+              </div>
+              <input id="arName" type="text" placeholder="مثال: محمد العتيبي" oninput="onInputChange()" />
+            </div>
+            <div class="field">
+              <div class="field-header">
+                <label for="arRole">المسمى الوظيفي المستهدف</label>
+              </div>
+              <input id="arRole" type="text" placeholder="مثال: محلل بيانات ومطور تقارير" oninput="onInputChange()" />
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="arPhone">رقم الجوال والمدينة</label>
+            </div>
+            <input id="arPhone" type="text" placeholder="05XXXXXXXX - الرياض" oninput="onInputChange()" />
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="arObjective">الهدف الوظيفي</label>
+              <label class="toggle-check">
+                <input id="incArObjective" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم
+              </label>
+            </div>
+            <textarea id="arObjective" placeholder="اكتب هدفك الوظيفي بوضوح ودقة..." oninput="onInputChange()"></textarea>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="arEducation">التعليم والمؤهلات (سطر لكل مؤهل)</label>
+              <label class="toggle-check">
+                <input id="incArEducation" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم
+              </label>
+            </div>
+            <textarea id="arEducation" placeholder="بكالوريوس في نظم المعلومات - جامعة الملك سعود" oninput="onInputChange()"></textarea>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="arExperience">الخبرات والمشاريع (سطر لكل نقطة)</label>
+              <label class="toggle-check">
+                <input id="incArExperience" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم
+              </label>
+            </div>
+            <textarea id="arExperience" placeholder="ألغِ التحديد إذا لم يكن لديك خبرات أو مشاريع..." oninput="onInputChange()"></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <div class="field-header">
+                <label for="arCertifications">الدورات والشهادات</label>
+                <label class="toggle-check">
+                  <input id="incArCertifications" type="checkbox" checked onchange="onInputChange()" />
+                  تضمين القسم
+                </label>
+              </div>
+              <textarea id="arCertifications" placeholder="دورة أو شهادة معتمدة" oninput="onInputChange()"></textarea>
+            </div>
+            <div class="field">
+              <div class="field-header">
+                <label for="arLanguages">اللغات (سطر لكل لغة فقط)</label>
+                <label class="toggle-check">
+                  <input id="incArLanguages" type="checkbox" checked onchange="onInputChange()" />
+                  تضمين القسم
+                </label>
+              </div>
+              <textarea id="arLanguages" placeholder="العربية&#10;الإنجليزية" oninput="onInputChange()"></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="arSkills">المهارات (مفصولة بفاصلة)</label>
+              <label class="toggle-check">
+                <input id="incArSkills" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم
+              </label>
+            </div>
+            <input id="arSkills" type="text" placeholder="تحليل البيانات، إعداد التقارير، Excel، العمل ضمن فريق" oninput="onInputChange()" />
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="arAchievements">الإنجازات (سطر لكل إنجاز)</label>
+              <label class="toggle-check">
+                <input id="incArAchievements" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم
+              </label>
+            </div>
+            <textarea id="arAchievements" placeholder="ألغِ التحديد إذا لم يكن لديك إنجازات..." oninput="onInputChange()"></textarea>
+          </div>
+        </div>
+
+        <div id="enEditorBox" class="lang-box hidden-block">
+          <div class="lang-box-header">
+            <div class="lang-box-title">البيانات الإنجليزية / English Data (الصفحة الثانية في ثنائي اللغة)</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <div class="field-header">
+                <label for="enName">الاسم الثنائي / First & Last Name</label>
+              </div>
+              <input id="enName" type="text" placeholder="مثال: Mohammed Alotaibi" oninput="onInputChange()" />
+            </div>
+            <div class="field">
+              <div class="field-header">
+                <label for="enRole">المسمى الوظيفي المستهدف / Target Role</label>
+              </div>
+              <input id="enRole" type="text" placeholder="مثال: Data & Reporting Specialist" oninput="onInputChange()" />
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="enPhone">رقم الجوال والمدينة / Phone & City</label>
+            </div>
+            <input id="enPhone" type="text" placeholder="مثال: 0500000000 - Riyadh" oninput="onInputChange()" />
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="enObjective">الهدف الوظيفي / Career Objective</label>
+              <label class="toggle-check">
+                <input id="incEnObjective" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم / Include
+              </label>
+            </div>
+            <textarea id="enObjective" placeholder="اكتب هدفك الوظيفي بالإنجليزية بوضوح..." oninput="onInputChange()"></textarea>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="enEducation">التعليم والمؤهلات / Education (سطر لكل مؤهل - one per line)</label>
+              <label class="toggle-check">
+                <input id="incEnEducation" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم / Include
+              </label>
+            </div>
+            <textarea id="enEducation" placeholder="مثال: B.Sc. in Information Systems - King Saud University" oninput="onInputChange()"></textarea>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="enExperience">الخبرات والمشاريع / Experience & Projects (سطر لكل نقطة - one per line)</label>
+              <label class="toggle-check">
+                <input id="incEnExperience" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم / Include
+              </label>
+            </div>
+            <textarea id="enExperience" placeholder="ألغِ التحديد إذا لم يكن لديك خبرات أو مشاريع..." oninput="onInputChange()"></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <div class="field-header">
+                <label for="enCertifications">الدورات والشهادات / Certifications & Courses</label>
+                <label class="toggle-check">
+                  <input id="incEnCertifications" type="checkbox" checked onchange="onInputChange()" />
+                  تضمين القسم / Include
+                </label>
+              </div>
+              <textarea id="enCertifications" placeholder="اسم الدورة أو الشهادة بالإنجليزية" oninput="onInputChange()"></textarea>
+            </div>
+            <div class="field">
+              <div class="field-header">
+                <label for="enLanguages">اللغات / Languages (سطر لكل لغة فقط - one per line)</label>
+                <label class="toggle-check">
+                  <input id="incEnLanguages" type="checkbox" checked onchange="onInputChange()" />
+                  تضمين القسم / Include
+                </label>
+              </div>
+              <textarea id="enLanguages" placeholder="Arabic&#10;English" oninput="onInputChange()"></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="enSkills">المهارات / Skills (مفصولة بفاصلة - comma-separated)</label>
+              <label class="toggle-check">
+                <input id="incEnSkills" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم / Include
+              </label>
+            </div>
+            <input id="enSkills" type="text" placeholder="مثال: Excel, SQL, Python, Data Analysis, Report Writing" oninput="onInputChange()" />
+          </div>
+
+          <div class="field">
+            <div class="field-header">
+              <label for="enAchievements">الإنجازات / Achievements (سطر لكل إنجاز - one per line)</label>
+              <label class="toggle-check">
+                <input id="incEnAchievements" type="checkbox" checked onchange="onInputChange()" />
+                تضمين القسم / Include
+              </label>
+            </div>
+            <textarea id="enAchievements" placeholder="ألغِ التحديد إذا لم يكن لديك إنجازات..." oninput="onInputChange()"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- القسم الثاني: صمّم السيرة الذاتية مع الذكاء الاصطناعي -->
+      <div id="section-ai" class="hidden-block">
+        <h2>القسم الثاني: صمّم السيرة الذاتية مع الذكاء الاصطناعي</h2>
+
+        <div class="sub-box">
+          <div class="lang-box-header">
+            <div class="lang-box-title">حوار تفصيلي متتابع (سؤال واحد في كل مرة)</div>
+            <span id="aiStepBadge" class="step-badge">خطوة 1</span>
+          </div>
+
+          <div class="field">
+            <label for="aiTargetLang">اللغة المستهدفة للتعبئة والنطق:</label>
+            <select id="aiTargetLang" onchange="handleAiLangChange()">
+              <option value="ar">العربية</option>
+              <option value="en">الإنجليزية / English</option>
+            </select>
+          </div>
+
+          <div class="voice-bar">
+            <label class="toggle-check">
+              <input id="autoSpeakToggle" type="checkbox" checked />
+              نطق السؤال صوتياً تلقائياً
+            </label>
+            <button class="btn btn-outline" type="button" onclick="speakCurrentQuestion()">🔊 نطق السؤال</button>
+          </div>
+
+          <div id="activeStepContainer" class="single-question-card">
+            <div id="currentQuestionText" class="single-question-text"></div>
+            <div id="currentSkipHint" class="skip-hint hidden-block"></div>
+          </div>
+
+          <div id="answerInputGroup" class="field">
+            <label for="aiAnswerInput">إجابتك (كتابةً أو عبر الميكروفون):</label>
+            <textarea id="aiAnswerInput" placeholder="اكتب إجابتك أو اضغط «تحدث الآن»..."></textarea>
+            <div id="emailHelpers" class="email-helpers hidden-block">
+              <button class="mini-chip" type="button" onclick="insertEmailToken('@')">@</button>
+              <button class="mini-chip" type="button" onclick="insertEmailToken('gmail.com')">gmail.com</button>
+              <button class="mini-chip" type="button" onclick="insertEmailToken('hotmail.com')">hotmail.com</button>
+              <button class="mini-chip" type="button" onclick="insertEmailToken('outlook.com')">outlook.com</button>
+              <button class="mini-chip" type="button" onclick="insertEmailToken('.sa')">.sa</button>
+            </div>
+          </div>
+
+          <div id="stepControlsGroup" style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button id="prevStepBtn" class="btn btn-outline" type="button" onclick="goToPreviousStage()">⬅️ السابق</button>
+            <button id="voiceBtn" class="btn btn-voice" type="button" onclick="toggleVoiceInput()">🎤 تحدث الآن</button>
+            <button id="submitStepBtn" class="btn btn-primary" type="button" onclick="submitAiAnswer()">حفظ والانتقال للتالي</button>
+            <button id="skipSectionBtn" class="btn btn-outline" type="button" onclick="skipCurrentSection()">تخطي القسم</button>
+          </div>
+
+          <div id="aiFeedback" class="feedback-msg"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel preview-panel">
+      <h2 class="preview-heading">معاينة السيرة الذاتية (Single-Column ATS)</h2>
+      <div id="previewPages" class="preview-pages"></div>
+    </section>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'masar_cv_data_project3_v15';
+    let currentMainTab = 'self';
+    let currentTemplate = 'ar';
+    let currentDensity = 'normal';
+    let recognition = null;
+    let isListening = false;
+
+    let activeAiLang = 'ar';
+    let flowStage = 'name';
+    let tempPhone = '';
+    let pendingEduDegree = '';
+    let pendingExpTitle = '';
+    let dynamicCount = 0;
+    let dynamicIndex = 0;
+    let dynamicBuffer = [];
+    let stepCounter = 1;
+
+    let stageHistoryByLang = {
+      ar: [],
+      en: []
+    };
+
+    const arSample = {
+      name: 'محمد العتيبي',
+      role: 'محلل بيانات ومطور تقارير',
+      phone: '0500000000 - الرياض',
+      objective:
+        'الالتحاق بفرصة عمل في الرياض تتيح توظيف مهاراتي في تنظيم البيانات وإعداد التقارير التحليلية وبناء نماذج عمل واضحة ومرتبة تدعم فرق العمل في اتخاذ القرار وتطوير الأداء التشغيلي.',
+      education: 'بكالوريوس في نظم المعلومات - جامعة الملك سعود (الرياض)',
+      experience:
+        'إعداد تقارير أداء وجداول متابعة منظمة وتدقيق البيانات لضمان دقة المخرجات - شركة التقنية المتقدمة\nتنفيذ مشاريع تطبيقية وتدريبية متوافقة مع معايير الجودة والتوثيق - مركز التدريب التطبيقي',
+      certifications:
+        'تحليل البيانات وبناء الجداول الاحترافية\nأساسيات إدارة المشاريع والتقارير التشغيلية',
+      skills: 'تحليل البيانات، إعداد التقارير، Microsoft Excel، SQL، العمل ضمن فريق',
+      achievements:
+        'تصميم نموذج متابعة وتنظيم بيانات قلل وقت إعداد التقارير الدورية بشكل ملحوظ\nتقديم مشروع تخرج متكامل نال إشادة لجنة التقييم',
+      languages: 'العربية\nالإنجليزية'
+    };
+
+    const enSample = {
+      name: 'Mohammed Alotaibi',
+      role: 'Data & Reporting Specialist',
+      phone: '0500000000 - Riyadh',
+      objective:
+        'Entry-level data and reporting specialist in Riyadh seeking to apply structured data organization, analytical reporting, and clear documentation skills to support team decision-making and operational efficiency.',
+      education: 'B.Sc. in Information Systems - King Saud University (Riyadh)',
+      experience:
+        'Prepared structured performance reports, tracking sheets, and data quality checks to ensure accurate outputs - Advanced Tech Company\nCompleted applied academic and training projects aligned with quality and documentation standards - Applied Training Center',
+      certifications:
+        'Data Analysis & Spreadsheet Modeling\nOperational Reporting & Project Fundamentals',
+      skills: 'Microsoft Excel, SQL, Data Analysis, Report Writing, Documentation, Teamwork',
+      achievements:
+        'Built a structured tracking template that noticeably reduced recurring reporting preparation time\nDelivered a comprehensive graduation project commended by the evaluation committee',
+      languages: 'Arabic\nEnglish'
+    };
+
+    const titles = {
+      ar: {
+        objective: 'الهدف الوظيفي',
+        education: 'التعليم والمؤهلات',
+        experience: 'الخبرات والمشاريع',
+        certifications: 'الدورات والشهادات',
+        skills: 'المهارات',
+        achievements: 'الإنجازات',
+        languages: 'اللغات',
+        defaultName: 'الاسم الثنائي',
+        defaultRole: 'المسمى الوظيفي المستهدف',
+        defaultContact: 'البريد الإلكتروني - رقم الجوال - المدينة'
+      },
+      en: {
+        objective: 'Career Objective',
+        education: 'Education',
+        experience: 'Experience & Projects',
+        certifications: 'Certifications & Courses',
+        skills: 'Skills',
+        achievements: 'Achievements',
+        languages: 'Languages',
+        defaultName: 'First & Last Name',
+        defaultRole: 'Target Role',
+        defaultContact: 'Email - Phone & City'
+      }
+    };
+
+    const ordinalsAr = [
+      'الأولى', 'الثانية', 'الثالثة', 'الرابعة', 'الخامسة',
+      'السادسة', 'السابعة', 'الثامنة', 'التاسعة', 'العاشرة'
+    ];
+
+    const ordinalsArMale = [
+      'الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس',
+      'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر'
+    ];
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function getLines(text) {
+      return (text || '')
+        .split('\n')
+        .map(line => line.trim())
+        .filter(Boolean);
+    }
+
+    function parsePhoneAndCity(phoneStr) {
+      const raw = String(phoneStr || '').trim();
+      if (!raw) return { phone: '', city: '' };
+      const parts = raw.split(/\s+-\s+/);
+      if (parts.length >= 2) {
+        return {
+          phone: parts[0].trim().replace(/-/g, ''),
+          city: parts.slice(1).join(' - ').trim()
+        };
+      }
+      return { phone: raw.replace(/-/g, ''), city: '' };
+    }
+
+    function buildContactLineHtml(email, phoneField, defaultText) {
+      const parsed = parsePhoneAndCity(phoneField);
+      const segments = [];
+      if (email) {
+        segments.push(`<span dir="ltr" style="unicode-bidi:isolate;">${escapeHtml(email)}</span>`);
+      }
+      if (parsed.phone) {
+        segments.push(`<span class="phone-ltr">${escapeHtml(parsed.phone)}</span>`);
+      }
+      if (parsed.city) {
+        segments.push(`<span>${escapeHtml(parsed.city)}</span>`);
+      }
+      if (!segments.length) {
+        return `<span>${escapeHtml(defaultText)}</span>`;
+      }
+      return segments.join('<span> - </span>');
+    }
+
+    function switchMainTab(tabName) {
+      currentMainTab = ['self', 'ai'].includes(tabName) ? tabName : 'self';
+      ['self', 'ai'].forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        const sec = document.getElementById('section-' + t);
+        if (btn) btn.classList.toggle('active', t === currentMainTab);
+        if (sec) sec.classList.toggle('hidden-block', t !== currentMainTab);
+      });
+
+      if (currentMainTab === 'ai') {
+        renderStepView(true);
+      } else {
+        stopSpeaking();
+        stopVoiceRecognition();
+      }
+      saveState();
+    }
+
+    function syncEditorVisibility() {
+      const arBox = document.getElementById('arEditorBox');
+      const enBox = document.getElementById('enEditorBox');
+
+      if (arBox) arBox.classList.toggle('hidden-block', currentTemplate === 'en');
+      if (enBox) enBox.classList.toggle('hidden-block', currentTemplate === 'ar');
+
+      const pairs = [
+        ['incArObjective', 'arObjective'],
+        ['incArEducation', 'arEducation'],
+        ['incArExperience', 'arExperience'],
+        ['incArCertifications', 'arCertifications'],
+        ['incArSkills', 'arSkills'],
+        ['incArAchievements', 'arAchievements'],
+        ['incArLanguages', 'arLanguages'],
+        ['incEnObjective', 'enObjective'],
+        ['incEnEducation', 'enEducation'],
+        ['incEnExperience', 'enExperience'],
+        ['incEnCertifications', 'enCertifications'],
+        ['incEnSkills', 'enSkills'],
+        ['incEnAchievements', 'enAchievements'],
+        ['incEnLanguages', 'enLanguages']
+      ];
+
+      pairs.forEach(([chkId, inpId]) => {
+        const chk = document.getElementById(chkId);
+        const inp = document.getElementById(inpId);
+        if (chk && inp) inp.disabled = !chk.checked;
+      });
+    }
+
+    function setTemplate(tpl) {
+      const prevTemplate = currentTemplate;
+      currentTemplate = ['ar', 'en', 'bi'].includes(tpl) ? tpl : 'ar';
+      document.querySelectorAll('.tpl-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('btn-' + currentTemplate);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if ((currentTemplate === 'en' || currentTemplate === 'bi') && prevTemplate === 'ar') {
+        syncDataAcrossLanguages('ar', 'en');
+      }
+
+      const aiLangSel = document.getElementById('aiTargetLang');
+      if (currentTemplate === 'en' && aiLangSel && aiLangSel.value !== 'en') {
+        aiLangSel.value = 'en';
+        handleAiLangChange(false);
+      } else if (currentTemplate === 'ar' && aiLangSel && aiLangSel.value !== 'ar') {
+        aiLangSel.value = 'ar';
+        handleAiLangChange(false);
+      }
+
+      syncEditorVisibility();
+      saveState();
+      renderCV();
+    }
+
+    function setDensity(mode) {
+      currentDensity = mode === 'compact' ? 'compact' : 'normal';
+      const sel = document.getElementById('densitySelect');
+      if (sel) sel.value = currentDensity;
+      saveState();
+      renderCV();
+    }
+
+    function getFormData() {
+      const val = id => {
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : '';
+      };
+      const chk = id => {
+        const el = document.getElementById(id);
+        return el ? Boolean(el.checked) : true;
+      };
+
+      return {
+        email: val('email'),
+
+        arName: val('arName'),
+        arRole: val('arRole'),
+        arPhone: val('arPhone'),
+        incArObjective: chk('incArObjective'),
+        arObjective: val('arObjective'),
+        incArEducation: chk('incArEducation'),
+        arEducation: val('arEducation'),
+        incArExperience: chk('incArExperience'),
+        arExperience: val('arExperience'),
+        incArCertifications: chk('incArCertifications'),
+        arCertifications: val('arCertifications'),
+        incArSkills: chk('incArSkills'),
+        arSkills: val('arSkills'),
+        incArAchievements: chk('incArAchievements'),
+        arAchievements: val('arAchievements'),
+        incArLanguages: chk('incArLanguages'),
+        arLanguages: val('arLanguages'),
+
+        enName: val('enName'),
+        enRole: val('enRole'),
+        enPhone: val('enPhone'),
+        incEnObjective: chk('incEnObjective'),
+        enObjective: val('enObjective'),
+        incEnEducation: chk('incEnEducation'),
+        enEducation: val('enEducation'),
+        incEnExperience: chk('incEnExperience'),
+        enExperience: val('enExperience'),
+        incEnCertifications: chk('incEnCertifications'),
+        enCertifications: val('enCertifications'),
+        incEnSkills: chk('incEnSkills'),
+        enSkills: val('enSkills'),
+        incEnAchievements: chk('incEnAchievements'),
+        enAchievements: val('enAchievements'),
+        incEnLanguages: chk('incEnLanguages'),
+        enLanguages: val('enLanguages')
+      };
+    }
+
+    function buildSingleSheetHtml(lang, data, addPageBreak) {
+      const isEn = lang === 'en';
+      const lbl = isEn ? titles.en : titles.ar;
+      const dirClass = isEn ? 'sheet-ltr' : 'sheet-rtl';
+      const dirAttr = isEn ? 'ltr' : 'rtl';
+      const compactClass = currentDensity === 'compact' ? 'compact' : '';
+      const breakClass = addPageBreak ? 'page-break-after' : '';
+
+      const nameVal = (isEn ? data.enName : data.arName) || lbl.defaultName;
+      const roleVal = (isEn ? data.enRole : data.arRole) || lbl.defaultRole;
+      const phoneVal = isEn ? data.enPhone : data.arPhone;
+      const contactHtml = buildContactLineHtml(data.email, phoneVal, lbl.defaultContact);
+
+      const incObjective = isEn ? data.incEnObjective : data.incArObjective;
+      const objectiveVal = isEn ? data.enObjective : data.arObjective;
+
+      const incEducation = isEn ? data.incEnEducation : data.incArEducation;
+      const eduLines = incEducation ? getLines(isEn ? data.enEducation : data.arEducation) : [];
+
+      const incExperience = isEn ? data.incEnExperience : data.incArExperience;
+      const expLines = incExperience ? getLines(isEn ? data.enExperience : data.arExperience) : [];
+
+      const incCertifications = isEn ? data.incEnCertifications : data.incArCertifications;
+      const certLines = incCertifications ? getLines(isEn ? data.enCertifications : data.arCertifications) : [];
+
+      const incSkills = isEn ? data.incEnSkills : data.incArSkills;
+      const skillsVal = isEn ? data.enSkills : data.arSkills;
+
+      const incAchievements = isEn ? data.incEnAchievements : data.incArAchievements;
+      const achLines = incAchievements ? getLines(isEn ? data.enAchievements : data.arAchievements) : [];
+
+      const incLanguages = isEn ? data.incEnLanguages : data.incArLanguages;
+      const langLines = incLanguages ? getLines(isEn ? data.enLanguages : data.arLanguages) : [];
+
+      const listHtml = lines =>
+        `<ul class="cv-list">${lines.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+
+      return `
+        <article class="cv-sheet ${dirClass} ${compactClass} ${breakClass}" dir="${dirAttr}">
+          <div class="cv-header">
+            <div class="cv-name">${escapeHtml(nameVal)}</div>
+            <div class="cv-role">${escapeHtml(roleVal)}</div>
+            <div class="cv-contact">${contactHtml}</div>
+          </div>
+
+          ${incObjective && objectiveVal ? `
+            <div class="cv-section">
+              <div class="cv-section-title">${escapeHtml(lbl.objective)}</div>
+              <p class="cv-text">${escapeHtml(objectiveVal)}</p>
+            </div>
+          ` : ''}
+
+          ${eduLines.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">${escapeHtml(lbl.education)}</div>
+              ${listHtml(eduLines)}
+            </div>
+          ` : ''}
+
+          ${expLines.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">${escapeHtml(lbl.experience)}</div>
+              ${listHtml(expLines)}
+            </div>
+          ` : ''}
+
+          ${certLines.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">${escapeHtml(lbl.certifications)}</div>
+              ${listHtml(certLines)}
+            </div>
+          ` : ''}
+
+          ${incSkills && skillsVal ? `
+            <div class="cv-section">
+              <div class="cv-section-title">${escapeHtml(lbl.skills)}</div>
+              <p class="cv-text">${escapeHtml(skillsVal)}</p>
+            </div>
+          ` : ''}
+
+          ${achLines.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">${escapeHtml(lbl.achievements)}</div>
+              ${listHtml(achLines)}
+            </div>
+          ` : ''}
+
+          ${langLines.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">${escapeHtml(lbl.languages)}</div>
+              ${listHtml(langLines)}
+            </div>
+          ` : ''}
+        </article>
+      `;
+    }
+
+    function updateAtsScore(data) {
+      let score = 0;
+      const tips = [];
+
+      const checkAr = currentTemplate === 'ar' || currentTemplate === 'bi';
+      const checkEn = currentTemplate === 'en' || currentTemplate === 'bi';
+
+      if (data.email) score += 10;
+      else tips.push('أدخل البريد الإلكتروني لسهولة التواصل.');
+
+      if (checkAr) {
+        if (data.arName && data.arRole && data.arPhone) score += 25;
+        else tips.push('أضف الاسم الثنائي والمسمى الوظيفي والجوال والمدينة بالعربية.');
+        if (data.incArEducation && data.arEducation) score += 15;
+        else tips.push('أضف المؤهل العلمي العربي.');
+      }
+
+      if (checkEn) {
+        if (data.enName && data.enRole && data.enPhone) score += 25;
+        else tips.push('أضف الاسم الثنائي والمسمى الوظيفي والجوال والمدينة بالإنجليزية.');
+        if (data.incEnEducation && data.enEducation) score += 15;
+        else tips.push('أضف المؤهل العلمي بالإنجليزية.');
+      }
+
+      const hasSkillsOrExp =
+        (checkAr && ((data.incArSkills && data.arSkills) || (data.incArExperience && data.arExperience) || (data.incArAchievements && data.arAchievements))) ||
+        (checkEn && ((data.incEnSkills && data.enSkills) || (data.incEnExperience && data.enExperience) || (data.incEnAchievements && data.enAchievements)));
+
+      if (hasSkillsOrExp) score += 25;
+      else tips.push('فعّل المهارات أو الخبرات أو الإنجازات وأضف محتوى واضحاً.');
+
+      if (score > 100) score = 100;
+
+      const scoreEl = document.getElementById('atsScore');
+      const fillEl = document.getElementById('atsFill');
+      const tipsEl = document.getElementById('atsTips');
+
+      if (scoreEl) scoreEl.textContent = score + '%';
+      if (fillEl) {
+        fillEl.style.width = score + '%';
+        if (score >= 80) fillEl.style.backgroundColor = '#15803d';
+        else if (score >= 50) fillEl.style.backgroundColor = '#2563eb';
+        else fillEl.style.backgroundColor = '#b45309';
+      }
+
+      if (tipsEl) {
+        if (!tips.length) {
+          tipsEl.innerHTML = '<li>السيرة الذاتية منظمة ومناسبة لأنظمة ATS.</li>';
+        } else {
+          tipsEl.innerHTML = tips.map(t => `<li>${escapeHtml(t)}</li>`).join('');
+        }
+      }
+    }
+
+    function renderCV() {
+      syncEditorVisibility();
+      const data = getFormData();
+      const pagesEl = document.getElementById('previewPages');
+      if (!pagesEl) return;
+
+      if (currentTemplate === 'ar') {
+        pagesEl.innerHTML = buildSingleSheetHtml('ar', data, false);
+      } else if (currentTemplate === 'en') {
+        pagesEl.innerHTML = buildSingleSheetHtml('en', data, false);
+      } else {
+        pagesEl.innerHTML =
+          buildSingleSheetHtml('ar', data, true) +
+          buildSingleSheetHtml('en', data, false);
+      }
+
+      updateAtsScore(data);
+    }
+
+    function transliterateArabicNameToEnglish(arName) {
+      const cleaned = String(arName || '').trim();
+      if (!cleaned) return '';
+      if (/^[a-zA-Z\s'-]+$/.test(cleaned)) {
+        return cleaned.replace(/\b\w+/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+      }
+
+      const commonNames = {
+        'محمد': 'Mohammed',
+        'أحمد': 'Ahmed',
+        'احمد': 'Ahmed',
+        'علي': 'Ali',
+        'ياسر': 'Yasser',
+        'عبدالله': 'Abdullah',
+        'عبد الرحمن': 'Abdulrahman',
+        'عبدالرحمن': 'Abdulrahman',
+        'خالد': 'Khaled',
+        'سعد': 'Saad',
+        'فهد': 'Fahad',
+        'سلطان': 'Sultan',
+        'سعود': 'Saud',
+        'عمر': 'Omar',
+        'طارق': 'Tariq',
+        'ماجد': 'Majed',
+        'نايف': 'Nayef',
+        'فيصل': 'Faisal',
+        'نواف': 'Nawaf',
+        'تركي': 'Turki',
+        'بندر': 'Bandar',
+        'راشد': 'Rashed',
+        'صالح': 'Saleh',
+        'إبراهيم': 'Ibrahim',
+        'ابراهيم': 'Ibrahim',
+        'يوسف': 'Youssef',
+        'العتيبي': 'Alotaibi',
+        'القحطاني': 'Alqahtani',
+        'الغامدي': 'Alghamdi',
+        'الزهراني': 'Alzahrani',
+        'الشمري': 'Alshammari',
+        'الدوسري': 'Aldosari',
+        'الحربي': 'Alharbi',
+        'المطيري': 'Almutairi',
+        'السبيعي': 'Alsubaie',
+        'الرياض': 'Riyadh',
+        'جدة': 'Jeddah',
+        'مكة': 'Makkah',
+        'المدينة': 'Madinah',
+        'الدمام': 'Dammam',
+        'الخبر': 'Khobar',
+        'جازان': 'Jazan',
+        'أبها': 'Abha',
+        'تبوك': 'Tabuk'
+      };
+
+      const charMap = {
+        'ا': 'a', 'أ': 'a', 'إ': 'e', 'آ': 'a', 'ى': 'a', 'ة': 'a',
+        'ب': 'b', 'ت': 't', 'ث': 'th', 'ج': 'j', 'ح': 'h', 'خ': 'kh',
+        'د': 'd', 'ذ': 'dh', 'ر': 'r', 'ز': 'z', 'س': 's', 'ش': 'sh',
+        'ص': 's', 'ض': 'd', 'ط': 't', 'ظ': 'z', 'ع': 'a', 'غ': 'gh',
+        'ف': 'f', 'ق': 'q', 'ك': 'k', 'ل': 'l', 'م': 'm', 'ن': 'n',
+        'ه': 'h', 'و': 'w', 'ي': 'y'
+      };
+
+      return cleaned
+        .split(/\s+/)
+        .map(part => {
+          if (commonNames[part]) return commonNames[part];
+          if (/^ال/.test(part) && part.length > 2) {
+            const rest = part.slice(2);
+            if (commonNames['ال' + rest]) return commonNames['ال' + rest];
+            const mappedRest = rest.split('').map(c => charMap[c] || '').join('');
+            return 'Al' + (mappedRest ? mappedRest.charAt(0).toUpperCase() + mappedRest.slice(1) : '');
+          }
+          const mapped = part.split('').map(c => charMap[c] || '').join('');
+          return mapped ? mapped.charAt(0).toUpperCase() + mapped.slice(1) : part;
+        })
+        .join(' ')
+        .trim();
+    }
+
+    function translateArabicPhraseToEnglish(text) {
+      let s = String(text || '').trim();
+      if (!s) return '';
+      if (!/[\u0600-\u06FF]/.test(s)) return s;
+
+      const phraseMap = [
+        [/الالتحاق بفرصة عمل/g, 'Seeking a career opportunity'],
+        [/الهدف الوظيفي/g, 'Career Objective'],
+        [/معلم لغة إنجليزية/g, 'English Language Teacher'],
+        [/معلم رياضيات/g, 'Mathematics Teacher'],
+        [/محلل بيانات ومطور تقارير/g, 'Data Analyst & Report Developer'],
+        [/تحليل البيانات/g, 'Data Analysis'],
+        [/إعداد التقارير/g, 'Report Writing'],
+        [/العمل ضمن فريق/g, 'Teamwork'],
+        [/بكالوريوس في نظم المعلومات/g, 'Bachelor of Information Systems'],
+        [/بكالوريوس رياضيات/g, 'Bachelor of Mathematics'],
+        [/بكالوريوس/g, 'Bachelor'],
+        [/ماجستير/g, 'Master'],
+        [/دبلوم/g, 'Diploma'],
+        [/جامعة الملك سعود/g, 'King Saud University'],
+        [/جامعة الملك عبدالعزيز/g, 'King Abdulaziz University'],
+        [/جامعة جازان/g, 'Jazan University'],
+        [/جامعة/g, 'University'],
+        [/العربية/g, 'Arabic'],
+        [/الإنجليزية/g, 'English'],
+        [/الرياض/g, 'Riyadh'],
+        [/جدة/g, 'Jeddah'],
+        [/جازان/g, 'Jazan'],
+        [/الدمام/g, 'Dammam']
+      ];
+
+      phraseMap.forEach(([re, rep]) => {
+        s = s.replace(re, rep);
+      });
+
+      const wordMap = {
+        'مهاراتي': 'my skills',
+        'تطويرها': 'developing them',
+        'المجال': 'field',
+        'العلمي': 'academic',
+        'والعملي': 'and practical',
+        'التميز': 'excellence',
+        'العمل': 'work',
+        'إدارة': 'management',
+        'مشاريع': 'projects',
+        'مشروع': 'project',
+        'خبرة': 'experience',
+        'خبرات': 'experiences',
+        'إنجاز': 'achievement',
+        'إنجازات': 'achievements',
+        'دورة': 'course',
+        'دورات': 'courses',
+        'شهادة': 'certificate',
+        'شهادات': 'certificates',
+        'لغة': 'language',
+        'لغات': 'languages',
+        'ممتاز': 'fluent',
+        'جيد': 'good',
+        'متقدم': 'advanced',
+        'أساسي': 'basic',
+        'وتدقيق': 'and auditing',
+        'البيانات': 'data',
+        'تنظيم': 'organizing',
+        'تقارير': 'reports',
+        'تقرير': 'report',
+        'فريق': 'team',
+        'جودة': 'quality'
+      };
+
+      s = s
+        .split(/(\s+|[،,.-]+)/)
+        .map(tok => {
+          const t = tok.trim();
+          if (!t) return tok;
+          if (/^[\u0600-\u06FF]+$/.test(t)) {
+            if (wordMap[t]) return wordMap[t];
+            return transliterateArabicNameToEnglish(t);
+          }
+          if (t === '،') return ',';
+          return tok;
+        })
+        .join('')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      return s;
+    }
+
+    function syncDataAcrossLanguages(fromLang, toLang) {
+      if (fromLang === toLang) return;
+      const data = getFormData();
+
+      if (fromLang === 'ar' && toLang === 'en') {
+        if (data.arName) {
+          setFieldVal('enName', transliterateArabicNameToEnglish(data.arName));
+        }
+        if (!data.enRole && data.arRole) {
+          setFieldVal('enRole', translateArabicPhraseToEnglish(data.arRole));
+        }
+        if (!data.enPhone && data.arPhone) {
+          const parsed = parsePhoneAndCity(data.arPhone);
+          const cityEn = parsed.city ? translateArabicPhraseToEnglish(parsed.city) : '';
+          setFieldVal('enPhone', parsed.phone && cityEn ? `${parsed.phone} - ${cityEn}` : (parsed.phone || cityEn));
+        }
+        if (!data.enObjective && data.arObjective) {
+          setFieldVal('enObjective', translateArabicPhraseToEnglish(data.arObjective));
+        }
+        if (!data.enEducation && data.arEducation) {
+          setFieldVal('enEducation', getLines(data.arEducation).map(translateArabicPhraseToEnglish).join('\n'));
+        }
+        if (!data.enExperience && data.arExperience) {
+          setFieldVal('enExperience', getLines(data.arExperience).map(translateArabicPhraseToEnglish).join('\n'));
+        }
+        if (!data.enCertifications && data.arCertifications) {
+          setFieldVal('enCertifications', getLines(data.arCertifications).map(translateArabicPhraseToEnglish).join('\n'));
+        }
+        if (!data.enSkills && data.arSkills) {
+          const parts = data.arSkills.split(/[,،]/).map(s => translateArabicPhraseToEnglish(s.trim())).filter(Boolean);
+          setFieldVal('enSkills', parts.join(', '));
+        }
+        if (!data.enAchievements && data.arAchievements) {
+          setFieldVal('enAchievements', getLines(data.arAchievements).map(translateArabicPhraseToEnglish).join('\n'));
+        }
+        if (!data.enLanguages && data.arLanguages) {
+          setFieldVal('enLanguages', getLines(data.arLanguages).map(translateArabicPhraseToEnglish).join('\n'));
+        }
+      }
+
+      onInputChange();
+    }
+
+    function handleAiLangChange(shouldSpeak = true) {
+      const langSel = document.getElementById('aiTargetLang');
+      const nextLang = (langSel && langSel.value) || 'ar';
+      const prevLang = activeAiLang;
+
+      if (prevLang !== nextLang) {
+        if (prevLang === 'ar' && nextLang === 'en') {
+          syncDataAcrossLanguages('ar', 'en');
+        }
+        activeAiLang = nextLang;
+
+        const phoneFieldVal = getFieldVal(nextLang === 'en' ? 'enPhone' : 'arPhone');
+        if (phoneFieldVal) {
+          tempPhone = parsePhoneAndCity(phoneFieldVal).phone;
+        }
+      }
+
+      renderStepView(shouldSpeak);
+    }
+
+    function chooseBestVoice(langCode) {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices() || [];
+      if (!voices.length) return null;
+
+      if (langCode === 'en') {
+        return (
+          voices.find(v => /en-(US|GB)/i.test(v.lang) && /natural|online|google|samantha|daniel|aria/i.test(v.name)) ||
+          voices.find(v => /^en/i.test(v.lang)) ||
+          null
+        );
+      }
+
+      return (
+        voices.find(v => /^ar-(SA|AE|EG|JO)/i.test(v.lang) && /natural|online|google|majed|tarik|hoda|salma|naayf/i.test(v.name)) ||
+        voices.find(v => /^ar/i.test(v.lang)) ||
+        null
+      );
+    }
+
+    function prepareClearWhiteArabicSpeech(text) {
+      return String(text || '')
+        .replace(/سوف/g, 'راح')
+        .replace(/أدخل/g, 'اكتب')
+        .replace(/،/g, '، ')
+        .trim();
+    }
+
+    function stopSpeaking() {
+      if (window.geminiAudioPlayer && typeof window.geminiAudioPlayer.stop === 'function') {
+        try {
+          window.geminiAudioPlayer.stop();
+        } catch (e) {}
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function speakText(text, langCode) {
+      if (!text) return;
+      stopSpeaking();
+
+      if (typeof window.geminiSpeak === 'function') {
+        try {
+          window.geminiSpeak(text, langCode);
+          return;
+        } catch (e) {}
+      }
+
+      if (!('speechSynthesis' in window)) return;
+      const spokenText = langCode === 'en' ? text : prepareClearWhiteArabicSpeech(text);
+      const utter = new SpeechSynthesisUtterance(spokenText);
+      utter.lang = langCode === 'en' ? 'en-US' : 'ar-SA';
+      utter.rate = 0.98;
+      utter.pitch = 1.0;
+
+      const selectedVoice = chooseBestVoice(langCode);
+      if (selectedVoice) {
+        utter.voice = selectedVoice;
+      }
+
+      window.speechSynthesis.speak(utter);
+    }
+
+    function speakCurrentQuestion() {
+      const payload = getCurrentQuestionPayload();
+      const langSel = document.getElementById('aiTargetLang');
+      const lang = (langSel && langSel.value) || 'ar';
+      speakText(payload.question, lang);
+    }
+
+    function getStagePartLabel() {
+      const labels = {
+        name: 'اسمك الثنائي',
+        phone: 'رقم جوالك',
+        city: 'مدينتك',
+        role: 'المسمى الوظيفي',
+        email: 'بريدك الإلكتروني',
+        objective: 'هدفك الوظيفي',
+        edu_count: 'عدد المؤهلات التي تريد إضافتها',
+        edu_degree: 'المؤهل',
+        edu_university: 'الجهة التي منحتك هذا المؤهل',
+        exp_count: 'عدد الخبرات التي تريد إضافتها',
+        exp_items: 'الخبرة',
+        exp_company: 'الجهة أو الشركة التي حصلت على هذه الخبرة فيها',
+        skills_count: 'عدد المهارات',
+        skills_items: 'المهارة',
+        certs_count: 'عدد الدورات',
+        certs_items: 'الدورة',
+        ach_count: 'عدد الإنجازات',
+        ach_items: 'الإنجاز',
+        langs_count: 'عدد اللغات',
+        langs_items: 'اللغة'
+      };
+      return labels[flowStage] || 'هذا الجزء';
+    }
+
+    function promptConfirmCurrentPart(speakIt) {
+      const partLabel = getStagePartLabel();
+      const msg = `فضلاً تأكد من ${partLabel} ثم اضغط على حفظ والتالي`;
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (feedbackEl) {
+        feedbackEl.textContent = msg;
+      }
+      if (speakIt) {
+        const autoSpeakEl = document.getElementById('autoSpeakToggle');
+        if (autoSpeakEl && autoSpeakEl.checked) {
+          speakText(msg, activeAiLang);
+        }
+      }
+    }
+
+    function normalizeArabicDigits(str) {
+      return String(str || '')
+        .replace(/[٠-٩]/g, d => String(d.charCodeAt(0) - 1632))
+        .replace(/[۰-۹]/g, d => String(d.charCodeAt(0) - 1776));
+    }
+
+    function polishArabicWriting(text) {
+      let s = String(text || '').replace(/\s+/g, ' ').trim();
+      if (!s) return '';
+
+      s = s.replace(/\bالأقتصادية\b/g, 'الاقتصادية');
+      s = s.replace(/\bالأجتماعية\b/g, 'الاجتماعية');
+      s = s.replace(/\bالأدارية\b/g, 'الإدارية');
+      s = s.replace(/\bالأكاديمية\b/g, 'الأكاديمية');
+      s = s.replace(/\bالوظيفيه\b/g, 'الوظيفية');
+      s = s.replace(/\bالتعليميه\b/g, 'التعليمية');
+      s = s.replace(/\bالاداريه\b/g, 'الإدارية');
+      s = s.replace(/\bهذي\b/g, 'هذه');
+      s = s.replace(/\bهاذا\b/g, 'هذا');
+      s = s.replace(/\bالي\b/g, 'الذي');
+      s = s.replace(/\bاللي\b/g, 'التي');
+
+      s = s.replace(/\s+([،.!?؛:])/g, '$1');
+      s = s.replace(/([،.!?؛:])([^\s\n])/g, '$1 $2');
+      return s.trim();
+    }
+
+    function cleanNameAnswer(text) {
+      let s = polishArabicWriting(text);
+      s = s.replace(
+        /^(اسمي\s*(الثنائي)?\s*(هو)?|أنا\s*اسمي\s*(هو)?|الاسم\s*(الثنائي)?\s*(هو)?|اسمي|my\s*(full\s*|first\s*and\s*last\s*)?name\s*is|i\s*am)\s+/i,
+        ''
+      );
+      return s.replace(/[.،!؟]+$/g, '').trim();
+    }
+
+    function cleanPhoneAnswer(text) {
+      const normalized = normalizeArabicDigits(text);
+      const digitsOnly = normalized.replace(/\D+/g, '');
+      if (digitsOnly.length > 0) {
+        return digitsOnly;
+      }
+      return normalized.replace(/^(رقم\s*الجوال\s*(هو)?|جوالي\s*(هو)?|الرقم\s*(هو)?)\s*/i, '').trim();
+    }
+
+    function cleanCityAnswer(text) {
+      return polishArabicWriting(text)
+        .replace(/^(مدينتي\s*(هي)?|أنا\s*من|من\s*مدينة|مدينة\s*|أسكن\s*(في)?|أقيم\s*(في)?|في\s*|my\s*city\s*is|i\s*live\s*in)\s+/i, '')
+        .replace(/[.،!؟]+$/g, '')
+        .trim();
+    }
+
+    function cleanEntityAnswer(text) {
+      return polishArabicWriting(text)
+        .replace(/^(منحتني\s*(إياه|إياها)?\s*|منحتها\s*|منحني\s*(إياه|إياها)?\s*|صدر\s*(من|عن)?\s*|في\s*شركة\s*|شركة\s*|في\s*جهة\s*|جهة\s*|من\s*)/i, '')
+        .replace(/[.،!؟]+$/g, '')
+        .trim();
+    }
+
+    function cleanEmailAnswer(text) {
+      let s = normalizeArabicDigits(String(text || '')).toLowerCase().trim();
+      s = s.replace(/^(بريدي\s*(الإلكتروني|الالكتروني)?\s*(هو)?|إيميلي\s*(هو)?|ايميلي\s*(هو)?|البريد\s*(الإلكتروني|الالكتروني)?\s*(هو)?|my\s*email\s*(is)?)\s+/i, '');
+
+      const arToLatin = {
+        'أ': 'a', 'إ': 'e', 'آ': 'a', 'ا': 'a',
+        'ب': 'b', 'ت': 't', 'ث': 'th', 'ج': 'j',
+        'ح': 'h', 'خ': 'kh', 'د': 'd', 'ذ': 'dh',
+        'ر': 'r', 'ز': 'z', 'س': 's', 'ش': 'sh',
+        'ص': 's', 'ض': 'd', 'ط': 't', 'ظ': 'z',
+        'ع': 'a', 'غ': 'gh', 'ف': 'f', 'ق': 'q',
+        'ك': 'k', 'ل': 'l', 'م': 'm', 'ن': 'n',
+        'ه': 'h', 'و': 'w', 'ي': 'y', 'ى': 'a', 'ة': 'a'
+      };
+
+      s = s.replace(/\s*(آت|ات|أت)\s*/gi, '@');
+      s = s.replace(/\s*(دوت|dot|نقطة)\s*/gi, '.');
+      s = s.replace(/جيميل/gi, 'gmail');
+      s = s.replace(/هوتميل/gi, 'hotmail');
+      s = s.replace(/اوتلوك|أوتلوك/gi, 'outlook');
+      s = s.replace(/ياهو/gi, 'yahoo');
+      s = s.replace(/كوم/gi, 'com');
+
+      if (/[\u0600-\u06FF]/.test(s)) {
+        s = s.split('').map(ch => arToLatin[ch] !== undefined ? arToLatin[ch] : ch).join('');
+      }
+
+      return s.replace(/\s+/g, '').replace(/[.،!؟]+$/g, '').trim();
+    }
+
+    function insertEmailToken(token) {
+      const box = document.getElementById('aiAnswerInput');
+      if (!box) return;
+      box.value = (box.value || '') + token;
+      box.focus();
+      if (flowStage === 'email' && box.value.trim()) {
+        promptConfirmCurrentPart(false);
+      }
+    }
+
+    function parseCountAnswer(text) {
+      const normalized = normalizeArabicDigits(text).toLowerCase().trim();
+      const wordMap = {
+        صفر: 0, ولا: 0, لاشيء: 0,
+        واحد: 1, واحدة: 1, واحدًا: 1,
+        اثنان: 2, اثنتان: 2, اثنين: 2, ثنتين: 2,
+        ثلاث: 3, ثلاثة: 3, ثلاثًا: 3,
+        أربع: 4, اربعة: 4, أربعة: 4,
+        خمس: 5, خمسة: 5, خمسًا: 5,
+        ست: 6, ستة: 6,
+        سبع: 7, سبعة: 7,
+        ثمان: 8, ثماني: 8, ثمانية: 8,
+        تسع: 9, تسعة: 9,
+        عشر: 10, عشرة: 10,
+        one: 1, two: 2, three: 3, four: 4, five: 5,
+        six: 6, seven: 7, eight: 8, nine: 9, ten: 10
+      };
+
+      const cleanedWords = normalized
+        .replace(/(مهارات|مهارة|دورات|دورة|شهادات|إنجازات|انجازات|إنجاز|انجاز|خبرات|خبرة|مشاريع|مشروع|مؤهلات|مؤهل|لغات|لغة|سأضيف|ساضيف|سوف\s*أضيف|سوف\s*اضيف|أريد\s*إضافة|اريد\s*اضافة|تريد\s*إضافتها|تريد\s*اضافتها|skills|skill|courses|course|achievements|achievement|experience|projects|education|languages)/gi, '')
+        .trim();
+
+      if (wordMap[cleanedWords] !== undefined) {
+        return wordMap[cleanedWords];
+      }
+
+      for (const [k, v] of Object.entries(wordMap)) {
+        const re = new RegExp(`(^|\\s)${k}(\\s|$)`, 'i');
+        if (re.test(normalized)) return v;
+      }
+
+      const match = cleanedWords.match(/\d+/);
+      if (match) {
+        const n = parseInt(match[0], 10);
+        return isNaN(n) ? null : Math.min(Math.max(n, 0), 20);
+      }
+      return null;
+    }
+
+    function getOrdinalLabel(idx, gender) {
+      if (gender === 'male') {
+        return ordinalsArMale[idx] || `رقم ${idx + 1}`;
+      }
+      return ordinalsAr[idx] || `رقم ${idx + 1}`;
+    }
+
+    function getCurrentQuestionPayload() {
+      const isEn = activeAiLang === 'en';
+
+      switch (flowStage) {
+        case 'name':
+          return {
+            badge: `خطوة ${stepCounter} — الاسم الثنائي`,
+            question: isEn ? 'What is your two-part name?' : 'ما هو اسمك الثنائي؟',
+            skippable: false
+          };
+        case 'phone':
+          return {
+            badge: `خطوة ${stepCounter} — رقم الجوال`,
+            question: isEn ? 'What is your mobile phone number?' : 'ما هو رقم جوالك؟',
+            skippable: false
+          };
+        case 'city':
+          return {
+            badge: `خطوة ${stepCounter} — المدينة`,
+            question: isEn ? 'Which city are you in?' : 'ما هي مدينتك؟',
+            skippable: false
+          };
+        case 'role':
+          return {
+            badge: `خطوة ${stepCounter} — المسمى الوظيفي`,
+            question: isEn ? 'What is your target job title?' : 'ما هو المسمى الوظيفي المستهدف؟',
+            skippable: false
+          };
+        case 'email':
+          return {
+            badge: `خطوة ${stepCounter} — البريد الإلكتروني`,
+            question: isEn ? 'What is your email address (in English letters)?' : 'ما هو بريدك الإلكتروني؟ (اكتبه أو انطقه بالأحرف الإنجليزية)',
+            skippable: true,
+            hint: isEn
+              ? 'If you do not want to add an email now, click "Skip Section".'
+              : 'يُفضّل إدخال البريد بالأحرف الإنجليزية؛ وإذا لم ترغب بإضافته الآن فاضغط «تخطي القسم».'
+          };
+        case 'objective':
+          return {
+            badge: `خطوة ${stepCounter} — الهدف الوظيفي`,
+            question: isEn ? 'What is your career objective?' : 'ما هو هدفك الوظيفي؟',
+            skippable: true,
+            hint: isEn
+              ? 'If you do not want to write an objective now, click "Skip Section".'
+              : 'إذا لم يكن لديك أو لا تريد كتابة أي شيء في هذه الخانة، اضغط على «تخطي القسم».'
+          };
+        case 'edu_count':
+          return {
+            badge: `خطوة ${stepCounter} — التعليم`,
+            question: isEn
+              ? 'How many qualifications do you want to add?'
+              : 'كم عدد المؤهلات التي تريد إضافتها؟',
+            skippable: true,
+            hint: isEn
+              ? 'If you do not want to add education items, click "Skip Section".'
+              : 'إذا لم يكن لديك أو لا تريد كتابة أي شيء في قسم التعليم، اضغط على «تخطي القسم».'
+          };
+        case 'edu_degree': {
+          const ord = getOrdinalLabel(dynamicIndex, 'male');
+          return {
+            badge: `التعليم — المؤهل ${ord} (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn
+              ? `Enter qualification #${dynamicIndex + 1}:`
+              : `أدخل المؤهل ${ord}:`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining education items.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        case 'edu_university': {
+          const ord = getOrdinalLabel(dynamicIndex, 'male');
+          return {
+            badge: `التعليم — جهة المؤهل ${ord} (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn
+              ? `Which institution granted qualification #${dynamicIndex + 1}?`
+              : `ما هي الجهة التي منحتك هذا المؤهل (${ord})؟`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining education items.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        case 'exp_count':
+          return {
+            badge: `خطوة ${stepCounter} — الخبرات`,
+            question: isEn
+              ? 'How many experiences do you want to add?'
+              : 'كم خبرة تريد أن تضيف؟',
+            skippable: true,
+            hint: isEn
+              ? 'If you have no experience or do not want to add any, click "Skip Section".'
+              : 'إذا لم يكن لديك أو لا تريد كتابة أي شيء في قسم الخبرات، اضغط على «تخطي القسم».'
+          };
+        case 'exp_items': {
+          const ord = getOrdinalLabel(dynamicIndex, 'female');
+          return {
+            badge: `الخبرات — الخبرة ${ord} (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn
+              ? `Enter experience #${dynamicIndex + 1}:`
+              : `أدخل الخبرة ${ord}:`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining items.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        case 'exp_company': {
+          const ord = getOrdinalLabel(dynamicIndex, 'female');
+          return {
+            badge: `الخبرات — جهة الخبرة ${ord} (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn
+              ? `Which entity or company did you gain experience #${dynamicIndex + 1} with?`
+              : `ما هي الجهة أو الشركة التي حصلت على هذه الخبرة (${ord}) فيها؟`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining items.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        case 'skills_count':
+          return {
+            badge: `خطوة ${stepCounter} — المهارات`,
+            question: isEn ? 'How many skills will you add?' : 'كم مهارة سوف تضيف؟',
+            skippable: true,
+            hint: isEn
+              ? 'If you do not want to add skills now, click "Skip Section".'
+              : 'إذا لم يكن لديك أو لا تريد كتابة أي شيء في قسم المهارات، اضغط على «تخطي القسم».'
+          };
+        case 'skills_items': {
+          const ord = getOrdinalLabel(dynamicIndex, 'female');
+          return {
+            badge: `المهارات (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn ? `Enter skill #${dynamicIndex + 1}:` : `أدخل المهارة ${ord}:`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining skills.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        case 'certs_count':
+          return {
+            badge: `خطوة ${stepCounter} — الدورات`,
+            question: isEn ? 'How many courses or certifications will you add?' : 'كم دورة سوف تضيف؟',
+            skippable: true,
+            hint: isEn
+              ? 'If you have no courses or do not want to add any, click "Skip Section".'
+              : 'إذا لم يكن لديك أو لا تريد كتابة أي شيء في قسم الدورات، اضغط على «تخطي القسم».'
+          };
+        case 'certs_items': {
+          const ord = getOrdinalLabel(dynamicIndex, 'female');
+          return {
+            badge: `الدورات (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn ? `Enter course #${dynamicIndex + 1}:` : `أدخل الدورة ${ord}:`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining courses.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        case 'ach_count':
+          return {
+            badge: `خطوة ${stepCounter} — الإنجازات`,
+            question: isEn ? 'How many achievements will you add?' : 'كم إنجازاً سوف تضيف؟',
+            skippable: true,
+            hint: isEn
+              ? 'If you have no achievements or do not want to write anything here, click "Skip Section".'
+              : 'إذا لم يكن لديك أو لا تريد كتابة أي شيء في قسم الإنجازات، اضغط على «تخطي القسم».'
+          };
+        case 'ach_items': {
+          const ord = getOrdinalLabel(dynamicIndex, 'male');
+          return {
+            badge: `الإنجازات (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn ? `Enter achievement #${dynamicIndex + 1}:` : `أدخل الإنجاز ${ord}:`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining achievements.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        case 'langs_count':
+          return {
+            badge: `خطوة ${stepCounter} — اللغات`,
+            question: isEn ? 'How many languages will you add?' : 'كم لغة سوف تضيف؟',
+            skippable: true,
+            hint: isEn
+              ? 'If you do not want to add languages now, click "Skip Section".'
+              : 'إذا لم يكن لديك أو لا تريد كتابة أي شيء في قسم اللغات، اضغط على «تخطي القسم».'
+          };
+        case 'langs_items': {
+          const ord = getOrdinalLabel(dynamicIndex, 'female');
+          return {
+            badge: `اللغات (${dynamicIndex + 1} من ${dynamicCount})`,
+            question: isEn ? `Enter language #${dynamicIndex + 1}:` : `أدخل اللغة ${ord}:`,
+            skippable: true,
+            hint: isEn ? 'Click "Skip Section" to skip remaining languages.' : 'إذا لم يكن لديك أو لا تريد إضافة المزيد في هذا القسم، اضغط على «تخطي القسم».'
+          };
+        }
+        default:
+          return {
+            badge: 'مكتمل',
+            question: isEn
+              ? 'All sections are complete. Review the preview or click "Print / Save PDF".'
+              : 'تمت تعبئة الأقسام بنجاح. يمكنك مراجعة المعاينة أو الضغط على «طباعة / حفظ PDF».',
+            skippable: false
+          };
+      }
+    }
+
+    function snapshotCurrentState(rawAnswerShown) {
+      return {
+        lang: activeAiLang,
+        flowStage,
+        tempPhone,
+        pendingEduDegree,
+        pendingExpTitle,
+        dynamicCount,
+        dynamicIndex,
+        dynamicBuffer: [...dynamicBuffer],
+        stepCounter,
+        answerText: rawAnswerShown || '',
+        formData: getFormData()
+      };
+    }
+
+    function restoreFormData(savedData) {
+      if (!savedData) return;
+      Object.keys(savedData).forEach(key => {
+        const el = document.getElementById(key);
+        if (!el) return;
+        if (el.type === 'checkbox') el.checked = Boolean(savedData[key]);
+        else el.value = savedData[key] || '';
+      });
+    }
+
+    function renderStepView(shouldAutoSpeak) {
+      const payload = getCurrentQuestionPayload();
+      const badgeEl = document.getElementById('aiStepBadge');
+      const qTextEl = document.getElementById('currentQuestionText');
+      const hintEl = document.getElementById('currentSkipHint');
+      const ansGroup = document.getElementById('answerInputGroup');
+      const ansInput = document.getElementById('aiAnswerInput');
+      const emailHelpers = document.getElementById('emailHelpers');
+      const prevBtn = document.getElementById('prevStepBtn');
+      const voiceBtn = document.getElementById('voiceBtn');
+      const submitBtn = document.getElementById('submitStepBtn');
+      const skipBtn = document.getElementById('skipSectionBtn');
+
+      if (badgeEl) badgeEl.textContent = payload.badge;
+      if (qTextEl) qTextEl.textContent = payload.question;
+
+      if (hintEl) {
+        if (payload.hint) {
+          hintEl.textContent = payload.hint;
+          hintEl.classList.remove('hidden-block');
+        } else {
+          hintEl.textContent = '';
+          hintEl.classList.add('hidden-block');
+        }
+      }
+
+      const isEmailStage = flowStage === 'email';
+      if (emailHelpers) {
+        emailHelpers.classList.toggle('hidden-block', !isEmailStage);
+      }
+      if (ansInput) {
+        ansInput.dir = isEmailStage ? 'ltr' : 'auto';
+        ansInput.style.fontFamily = isEmailStage ? "'Inter', 'Cairo', sans-serif" : 'inherit';
+      }
+
+      const langHistory = stageHistoryByLang[activeAiLang] || [];
+      const otherLang = activeAiLang === 'ar' ? 'en' : 'ar';
+      const otherHistory = stageHistoryByLang[otherLang] || [];
+      if (prevBtn) {
+        prevBtn.disabled = (langHistory.length === 0 && otherHistory.length === 0 && flowStage === 'name');
+      }
+
+      const isDone = flowStage === 'done';
+      if (ansGroup) ansGroup.classList.toggle('hidden-block', isDone);
+      if (voiceBtn) voiceBtn.classList.toggle('hidden-block', isDone);
+      if (submitBtn) submitBtn.classList.toggle('hidden-block', isDone);
+      if (skipBtn) skipBtn.classList.toggle('hidden-block', isDone || !payload.skippable);
+
+      const autoSpeakEl = document.getElementById('autoSpeakToggle');
+      if (shouldAutoSpeak && autoSpeakEl && autoSpeakEl.checked) {
+        speakText(payload.question, activeAiLang);
+      }
+    }
+
+    function goToPreviousStage() {
+      stopVoiceRecognition();
+      let langHistory = stageHistoryByLang[activeAiLang] || [];
+      if (!langHistory.length) {
+        const otherLang = activeAiLang === 'ar' ? 'en' : 'ar';
+        if ((stageHistoryByLang[otherLang] || []).length > 0) {
+          langHistory = stageHistoryByLang[otherLang];
+        } else if (flowStage !== 'name') {
+          flowStage = 'name';
+          pendingEduDegree = '';
+          pendingExpTitle = '';
+          dynamicCount = 0;
+          dynamicIndex = 0;
+          dynamicBuffer = [];
+          stepCounter = 1;
+          const feedbackEl = document.getElementById('aiFeedback');
+          if (feedbackEl) feedbackEl.textContent = 'عدنا إلى الخطوة الأولى.';
+          renderStepView(true);
+          return;
+        } else {
+          return;
+        }
+      }
+
+      const prevSnap = langHistory.pop();
+      flowStage = prevSnap.flowStage;
+      tempPhone = prevSnap.tempPhone;
+      pendingEduDegree = prevSnap.pendingEduDegree;
+      pendingExpTitle = prevSnap.pendingExpTitle || '';
+      dynamicCount = prevSnap.dynamicCount;
+      dynamicIndex = prevSnap.dynamicIndex;
+      dynamicBuffer = [...prevSnap.dynamicBuffer];
+      stepCounter = prevSnap.stepCounter;
+
+      restoreFormData(prevSnap.formData);
+      onInputChange();
+
+      const inputEl = document.getElementById('aiAnswerInput');
+      if (inputEl) {
+        inputEl.value = prevSnap.answerText || '';
+      }
+
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (feedbackEl) {
+        feedbackEl.textContent = 'عدنا إلى الخطوة السابقة والنص السابق محفوظ أمامك.';
+      }
+
+      renderStepView(true);
+    }
+
+    function getLangPrefix() {
+      return activeAiLang === 'en' ? 'en' : 'ar';
+    }
+
+    function setFieldVal(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.value = val;
+    }
+
+    function getFieldVal(id) {
+      const el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    }
+
+    function advanceToNextStageAfterSection(currentStageName) {
+      const mapNext = {
+        name: 'phone',
+        phone: 'city',
+        city: 'role',
+        role: 'email',
+        email: 'objective',
+        objective: 'edu_count',
+        edu_count: 'exp_count',
+        edu_degree: 'exp_count',
+        edu_university: 'exp_count',
+        exp_count: 'skills_count',
+        exp_items: 'skills_count',
+        exp_company: 'skills_count',
+        skills_count: 'certs_count',
+        skills_items: 'certs_count',
+        certs_count: 'ach_count',
+        certs_items: 'ach_count',
+        ach_count: 'langs_count',
+        ach_items: 'langs_count',
+        langs_count: 'done',
+        langs_items: 'done'
+      };
+
+      flowStage = mapNext[currentStageName] || 'done';
+      pendingEduDegree = '';
+      pendingExpTitle = '';
+      dynamicCount = 0;
+      dynamicIndex = 0;
+      dynamicBuffer = [];
+      stepCounter++;
+    }
+
+    function startDynamicSection(countStage, itemsStage, answer) {
+      const count = parseCountAnswer(answer);
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (count === null) {
+        if (feedbackEl) feedbackEl.textContent = 'اكتب رقماً واضحاً (مثل: 1 أو 2) أو اضغط «تخطي القسم».';
+        return false;
+      }
+      if (count === 0) {
+        advanceToNextStageAfterSection(countStage);
+        if (feedbackEl) feedbackEl.textContent = 'تم الانتقال إلى القسم التالي.';
+        return true;
+      }
+      dynamicCount = count;
+      dynamicIndex = 0;
+      dynamicBuffer = [];
+      pendingEduDegree = '';
+      pendingExpTitle = '';
+      flowStage = itemsStage;
+      stepCounter++;
+      if (feedbackEl) feedbackEl.textContent = `تم تحديد ${count}. أجب عن السؤال التالي.`;
+      return true;
+    }
+
+    function handleDynamicItem(itemsStage, targetFieldSuffix, joinMode, answer) {
+      const prefix = getLangPrefix();
+      const feedbackEl = document.getElementById('aiFeedback');
+      const cleaned = prefix === 'ar' ? polishArabicWriting(answer) : String(answer || '').trim();
+      if (cleaned) {
+        dynamicBuffer.push(cleaned);
+      }
+
+      const sep = joinMode === 'skills' ? (prefix === 'en' ? ', ' : '، ') : '\n';
+      const existing = getFieldVal(prefix + targetFieldSuffix);
+
+      if (joinMode === 'skills') {
+        const existingParts = existing ? existing.split(/[,،]/).map(s => s.trim()).filter(Boolean) : [];
+        const combined = [...existingParts, ...dynamicBuffer];
+        setFieldVal(prefix + targetFieldSuffix, combined.join(sep));
+      } else {
+        const existingLines = existing ? getLines(existing) : [];
+        const combinedLines = [...existingLines, ...dynamicBuffer];
+        setFieldVal(prefix + targetFieldSuffix, combinedLines.join('\n'));
+      }
+
+      onInputChange();
+      dynamicIndex++;
+
+      if (dynamicIndex < dynamicCount) {
+        if (feedbackEl) feedbackEl.textContent = `تم حفظ العنصر ${dynamicIndex} من ${dynamicCount}.`;
+      } else {
+        advanceToNextStageAfterSection(itemsStage);
+        if (feedbackEl) feedbackEl.textContent = 'تم إتمام هذا القسم والانتقال إلى القسم التالي.';
+      }
+    }
+
+    function handleEduDegreeAnswer(answer) {
+      pendingEduDegree = (activeAiLang === 'ar' ? polishArabicWriting(answer) : String(answer || '').trim())
+        .replace(/[.،!؟]+$/g, '')
+        .trim();
+      flowStage = 'edu_university';
+      stepCounter++;
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (feedbackEl) {
+        feedbackEl.textContent = 'تم تسجيل المؤهل. اكتب الآن الجهة التي منحتك هذا المؤهل.';
+      }
+    }
+
+    function handleEduUniversityAnswer(answer) {
+      const prefix = getLangPrefix();
+      const uni = cleanEntityAnswer(answer);
+      const formattedLine = pendingEduDegree && uni
+        ? `${pendingEduDegree} - ${uni}`
+        : (pendingEduDegree || uni);
+
+      if (formattedLine) {
+        dynamicBuffer.push(formattedLine);
+        const existing = getFieldVal(prefix + 'Education');
+        const existingLines = existing ? getLines(existing) : [];
+        setFieldVal(prefix + 'Education', [...existingLines, ...dynamicBuffer].join('\n'));
+        onInputChange();
+      }
+
+      pendingEduDegree = '';
+      dynamicIndex++;
+
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (dynamicIndex < dynamicCount) {
+        flowStage = 'edu_degree';
+        stepCounter++;
+        if (feedbackEl) {
+          feedbackEl.textContent = `تم حفظ المؤهل ${dynamicIndex} من ${dynamicCount}. ننتقل للمؤهل التالي.`;
+        }
+      } else {
+        advanceToNextStageAfterSection('edu_university');
+        if (feedbackEl) {
+          feedbackEl.textContent = 'تم إتمام قسم التعليم والانتقال إلى القسم التالي.';
+        }
+      }
+    }
+
+    function handleExpTitleAnswer(answer) {
+      pendingExpTitle = (activeAiLang === 'ar' ? polishArabicWriting(answer) : String(answer || '').trim())
+        .replace(/[.،!؟]+$/g, '')
+        .trim();
+      flowStage = 'exp_company';
+      stepCounter++;
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (feedbackEl) {
+        feedbackEl.textContent = 'تم تسجيل الخبرة. اكتب الآن الجهة أو الشركة التي حصلت على هذه الخبرة فيها.';
+      }
+    }
+
+    function handleExpCompanyAnswer(answer) {
+      const prefix = getLangPrefix();
+      const company = cleanEntityAnswer(answer);
+      const formattedLine = pendingExpTitle && company
+        ? `${pendingExpTitle} - ${company}`
+        : (pendingExpTitle || company);
+
+      if (formattedLine) {
+        dynamicBuffer.push(formattedLine);
+        const existing = getFieldVal(prefix + 'Experience');
+        const existingLines = existing ? getLines(existing) : [];
+        setFieldVal(prefix + 'Experience', [...existingLines, ...dynamicBuffer].join('\n'));
+        onInputChange();
+      }
+
+      pendingExpTitle = '';
+      dynamicIndex++;
+
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (dynamicIndex < dynamicCount) {
+        flowStage = 'exp_items';
+        stepCounter++;
+        if (feedbackEl) {
+          feedbackEl.textContent = `تم حفظ الخبرة ${dynamicIndex} من ${dynamicCount}. ننتقل للخبرة التالية.`;
+        }
+      } else {
+        advanceToNextStageAfterSection('exp_company');
+        if (feedbackEl) {
+          feedbackEl.textContent = 'تم إتمام قسم الخبرات والانتقال إلى القسم التالي.';
+        }
+      }
+    }
+
+    function submitAiAnswer() {
+      stopVoiceRecognition();
+      const inputEl = document.getElementById('aiAnswerInput');
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (!inputEl) return;
+      const rawAnswer = inputEl.value.trim();
+      if (!rawAnswer) return;
+
+      const prefix = getLangPrefix();
+      const langHistory = stageHistoryByLang[activeAiLang];
+
+      if (/^(تخطي\s*القسم|skip\s*section)$/i.test(rawAnswer)) {
+        inputEl.value = '';
+        skipCurrentSection();
+        return;
+      }
+
+      const snapBeforeChange = snapshotCurrentState(rawAnswer);
+
+      switch (flowStage) {
+        case 'name': {
+          const cleanName = cleanNameAnswer(rawAnswer);
+          setFieldVal(prefix + 'Name', cleanName);
+          langHistory.push(snapBeforeChange);
+          flowStage = 'phone';
+          stepCounter++;
+          if (feedbackEl) feedbackEl.textContent = 'تم تسجيل الاسم: ' + cleanName;
+          break;
+        }
+        case 'phone': {
+          tempPhone = cleanPhoneAnswer(rawAnswer);
+          setFieldVal(prefix + 'Phone', tempPhone);
+          langHistory.push(snapBeforeChange);
+          flowStage = 'city';
+          stepCounter++;
+          if (feedbackEl) feedbackEl.textContent = 'تم تسجيل رقم الجوال: ' + tempPhone;
+          break;
+        }
+        case 'city': {
+          const cleanCity = cleanCityAnswer(rawAnswer);
+          const phoneOnly = tempPhone ? tempPhone.split(' - ')[0].trim().replace(/-/g, '') : '';
+          const combined = phoneOnly ? `${phoneOnly} - ${cleanCity}` : cleanCity;
+          setFieldVal(prefix + 'Phone', combined);
+          langHistory.push(snapBeforeChange);
+          flowStage = 'role';
+          stepCounter++;
+          if (feedbackEl) feedbackEl.textContent = 'تم تسجيل المدينة: ' + cleanCity;
+          break;
+        }
+        case 'role': {
+          const cleanRole = prefix === 'ar' ? polishArabicWriting(rawAnswer) : rawAnswer;
+          setFieldVal(prefix + 'Role', cleanRole);
+          langHistory.push(snapBeforeChange);
+          flowStage = 'email';
+          stepCounter++;
+          if (feedbackEl) feedbackEl.textContent = 'تم تسجيل المسمى الوظيفي.';
+          break;
+        }
+        case 'email': {
+          const cleanMail = cleanEmailAnswer(rawAnswer);
+          setFieldVal('email', cleanMail);
+          langHistory.push(snapBeforeChange);
+          flowStage = 'objective';
+          stepCounter++;
+          if (feedbackEl) feedbackEl.textContent = 'تم تسجيل البريد الإلكتروني: ' + cleanMail;
+          break;
+        }
+        case 'objective': {
+          const cleanObj = prefix === 'ar' ? polishArabicWriting(rawAnswer) : rawAnswer;
+          setFieldVal(prefix + 'Objective', cleanObj);
+          langHistory.push(snapBeforeChange);
+          flowStage = 'edu_count';
+          stepCounter++;
+          if (feedbackEl) feedbackEl.textContent = 'تم تسجيل الهدف الوظيفي.';
+          break;
+        }
+        case 'edu_count':
+          langHistory.push(snapBeforeChange);
+          if (!startDynamicSection('edu_count', 'edu_degree', rawAnswer)) {
+            langHistory.pop();
+            return;
+          }
+          break;
+        case 'edu_degree':
+          langHistory.push(snapBeforeChange);
+          handleEduDegreeAnswer(rawAnswer);
+          break;
+        case 'edu_university':
+          langHistory.push(snapBeforeChange);
+          handleEduUniversityAnswer(rawAnswer);
+          break;
+        case 'exp_count':
+          langHistory.push(snapBeforeChange);
+          if (!startDynamicSection('exp_count', 'exp_items', rawAnswer)) {
+            langHistory.pop();
+            return;
+          }
+          break;
+        case 'exp_items':
+          langHistory.push(snapBeforeChange);
+          handleExpTitleAnswer(rawAnswer);
+          break;
+        case 'exp_company':
+          langHistory.push(snapBeforeChange);
+          handleExpCompanyAnswer(rawAnswer);
+          break;
+        case 'skills_count':
+          langHistory.push(snapBeforeChange);
+          if (!startDynamicSection('skills_count', 'skills_items', rawAnswer)) {
+            langHistory.pop();
+            return;
+          }
+          break;
+        case 'skills_items':
+          langHistory.push(snapBeforeChange);
+          handleDynamicItem('skills_items', 'Skills', 'skills', rawAnswer);
+          break;
+        case 'certs_count':
+          langHistory.push(snapBeforeChange);
+          if (!startDynamicSection('certs_count', 'certs_items', rawAnswer)) {
+            langHistory.pop();
+            return;
+          }
+          break;
+        case 'certs_items':
+          langHistory.push(snapBeforeChange);
+          handleDynamicItem('certs_items', 'Certifications', 'lines', rawAnswer);
+          break;
+        case 'ach_count':
+          langHistory.push(snapBeforeChange);
+          if (!startDynamicSection('ach_count', 'ach_items', rawAnswer)) {
+            langHistory.pop();
+            return;
+          }
+          break;
+        case 'ach_items':
+          langHistory.push(snapBeforeChange);
+          handleDynamicItem('ach_items', 'Achievements', 'lines', rawAnswer);
+          break;
+        case 'langs_count':
+          langHistory.push(snapBeforeChange);
+          if (!startDynamicSection('langs_count', 'langs_items', rawAnswer)) {
+            langHistory.pop();
+            return;
+          }
+          break;
+        case 'langs_items':
+          langHistory.push(snapBeforeChange);
+          handleDynamicItem('langs_items', 'Languages', 'lines', rawAnswer);
+          break;
+      }
+
+      inputEl.value = '';
+      onInputChange();
+      renderStepView(true);
+    }
+
+    function skipCurrentSection() {
+      stopVoiceRecognition();
+      const inputEl = document.getElementById('aiAnswerInput');
+      if (inputEl) inputEl.value = '';
+      const payload = getCurrentQuestionPayload();
+      if (!payload.skippable) return;
+
+      const langHistory = stageHistoryByLang[activeAiLang];
+      langHistory.push(snapshotCurrentState(''));
+
+      if (flowStage === 'edu_university' && pendingEduDegree) {
+        const prefix = getLangPrefix();
+        dynamicBuffer.push(pendingEduDegree);
+        const existing = getFieldVal(prefix + 'Education');
+        const existingLines = existing ? getLines(existing) : [];
+        setFieldVal(prefix + 'Education', [...existingLines, ...dynamicBuffer].join('\n'));
+        onInputChange();
+        pendingEduDegree = '';
+        dynamicIndex++;
+        if (dynamicIndex < dynamicCount) {
+          flowStage = 'edu_degree';
+          stepCounter++;
+          const feedbackEl = document.getElementById('aiFeedback');
+          if (feedbackEl) feedbackEl.textContent = 'تم حفظ المؤهل دون جهة والانتقال للمؤهل التالي.';
+          renderStepView(true);
+          return;
+        }
+      }
+
+      if (flowStage === 'exp_company' && pendingExpTitle) {
+        const prefix = getLangPrefix();
+        dynamicBuffer.push(pendingExpTitle);
+        const existing = getFieldVal(prefix + 'Experience');
+        const existingLines = existing ? getLines(existing) : [];
+        setFieldVal(prefix + 'Experience', [...existingLines, ...dynamicBuffer].join('\n'));
+        onInputChange();
+        pendingExpTitle = '';
+        dynamicIndex++;
+        if (dynamicIndex < dynamicCount) {
+          flowStage = 'exp_items';
+          stepCounter++;
+          const feedbackEl = document.getElementById('aiFeedback');
+          if (feedbackEl) feedbackEl.textContent = 'تم حفظ الخبرة دون جهة والانتقال للخبرة التالية.';
+          renderStepView(true);
+          return;
+        }
+      }
+
+      advanceToNextStageAfterSection(flowStage);
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (feedbackEl) feedbackEl.textContent = 'تم تخطي القسم والانتقال إلى التالي.';
+      renderStepView(true);
+    }
+
+    function stopVoiceRecognition() {
+      if (recognition && isListening) {
+        try {
+          recognition.stop();
+        } catch (e) {}
+      }
+      isListening = false;
+      const btn = document.getElementById('voiceBtn');
+      if (btn) {
+        btn.classList.remove('listening');
+        btn.textContent = '🎤 تحدث الآن';
+      }
+    }
+
+    function toggleVoiceInput() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (!SpeechRec) {
+        if (feedbackEl) feedbackEl.textContent = 'المتصفح الحالي لا يدعم الإدخال الصوتي؛ يمكنك كتابة إجابتك مباشرة.';
+        return;
+      }
+
+      if (isListening) {
+        stopVoiceRecognition();
+        return;
+      }
+
+      stopSpeaking();
+      recognition = new SpeechRec();
+      const targetLang = activeAiLang;
+      recognition.lang = (flowStage === 'email' || targetLang === 'en') ? 'en-US' : 'ar-SA';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const btn = document.getElementById('voiceBtn');
+      isListening = true;
+      if (btn) {
+        btn.classList.add('listening');
+        btn.textContent = '⏹ إيقاف الاستماع';
+      }
+      if (feedbackEl) {
+        feedbackEl.textContent = flowStage === 'email'
+          ? 'جاري الاستماع للبريد الإلكتروني بالإنجليزية...'
+          : 'جاري الاستماع لصوتك...';
+      }
+
+      recognition.onresult = event => {
+        const transcript = event.results[0] && event.results[0][0] ? event.results[0][0].transcript : '';
+        if (transcript) {
+          const ansBox = document.getElementById('aiAnswerInput');
+          let formatted = transcript.trim();
+          if (flowStage === 'email') {
+            formatted = cleanEmailAnswer(formatted);
+          } else if (flowStage === 'name') {
+            formatted = cleanNameAnswer(formatted);
+          } else if (flowStage === 'phone') {
+            formatted = cleanPhoneAnswer(formatted);
+          } else if (flowStage === 'city') {
+            formatted = cleanCityAnswer(formatted);
+          } else if (flowStage === 'edu_university' || flowStage === 'exp_company') {
+            formatted = cleanEntityAnswer(formatted);
+          } else if (targetLang === 'ar') {
+            formatted = polishArabicWriting(formatted);
+          }
+          if (ansBox) ansBox.value = formatted;
+          promptConfirmCurrentPart(true);
+        }
+      };
+
+      recognition.onerror = () => {
+        if (feedbackEl) feedbackEl.textContent = 'تعذر التقاط الصوت؛ تأكد من صلاحية الميكروفون أو اكتب إجابتك.';
+      };
+
+      recognition.onend = () => {
+        stopVoiceRecognition();
+      };
+
+      try {
+        recognition.start();
+      } catch (e) {
+        stopVoiceRecognition();
+        if (feedbackEl) feedbackEl.textContent = 'تعذر تشغيل الميكروفون؛ يمكنك الكتابة مباشرة.';
+      }
+    }
+
+    function fillSample() {
+      setFieldVal('email', 'mohammed@example.com');
+
+      setFieldVal('arName', arSample.name);
+      setFieldVal('arRole', arSample.role);
+      setFieldVal('arPhone', arSample.phone);
+      document.getElementById('incArObjective').checked = true;
+      setFieldVal('arObjective', arSample.objective);
+      document.getElementById('incArEducation').checked = true;
+      setFieldVal('arEducation', arSample.education);
+      document.getElementById('incArExperience').checked = true;
+      setFieldVal('arExperience', arSample.experience);
+      document.getElementById('incArCertifications').checked = true;
+      setFieldVal('arCertifications', arSample.certifications);
+      document.getElementById('incArSkills').checked = true;
+      setFieldVal('arSkills', arSample.skills);
+      document.getElementById('incArAchievements').checked = true;
+      setFieldVal('arAchievements', arSample.achievements);
+      document.getElementById('incArLanguages').checked = true;
+      setFieldVal('arLanguages', arSample.languages);
+
+      setFieldVal('enName', enSample.name);
+      setFieldVal('enRole', enSample.role);
+      setFieldVal('enPhone', enSample.phone);
+      document.getElementById('incEnObjective').checked = true;
+      setFieldVal('enObjective', enSample.objective);
+      document.getElementById('incEnEducation').checked = true;
+      setFieldVal('enEducation', enSample.education);
+      document.getElementById('incEnExperience').checked = true;
+      setFieldVal('enExperience', enSample.experience);
+      document.getElementById('incEnCertifications').checked = true;
+      setFieldVal('enCertifications', enSample.certifications);
+      document.getElementById('incEnSkills').checked = true;
+      setFieldVal('enSkills', enSample.skills);
+      document.getElementById('incEnAchievements').checked = true;
+      setFieldVal('enAchievements', enSample.achievements);
+      document.getElementById('incEnLanguages').checked = true;
+      setFieldVal('enLanguages', enSample.languages);
+
+      onInputChange();
+    }
+
+    function clearForm() {
+      stopSpeaking();
+      stopVoiceRecognition();
+
+      const textIds = [
+        'email',
+        'arName', 'arRole', 'arPhone', 'arObjective', 'arEducation', 'arExperience', 'arCertifications', 'arSkills', 'arAchievements', 'arLanguages',
+        'enName', 'enRole', 'enPhone', 'enObjective', 'enEducation', 'enExperience', 'enCertifications', 'enSkills', 'enAchievements', 'enLanguages',
+        'aiAnswerInput'
+      ];
+      textIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+
+      const checkIds = [
+        'incArObjective', 'incArEducation', 'incArExperience', 'incArCertifications', 'incArSkills', 'incArAchievements', 'incArLanguages',
+        'incEnObjective', 'incEnEducation', 'incEnExperience', 'incEnCertifications', 'incEnSkills', 'incEnAchievements', 'incEnLanguages'
+      ];
+      checkIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.checked = true;
+      });
+
+      flowStage = 'name';
+      tempPhone = '';
+      pendingEduDegree = '';
+      pendingExpTitle = '';
+      dynamicCount = 0;
+      dynamicIndex = 0;
+      dynamicBuffer = [];
+      stepCounter = 1;
+      stageHistoryByLang = { ar: [], en: [] };
+
+      const feedbackEl = document.getElementById('aiFeedback');
+      if (feedbackEl) feedbackEl.textContent = 'تم مسح جميع البيانات من كلا القسمين.';
+
+      localStorage.removeItem(STORAGE_KEY);
+      renderCV();
+      renderStepView(false);
+    }
+
+    function saveState() {
+      const payload = {
+        mainTab: currentMainTab,
+        template: currentTemplate,
+        density: currentDensity,
+        data: getFormData()
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (parsed.data) {
+          restoreFormData(parsed.data);
+        }
+        if (parsed.density) {
+          currentDensity = parsed.density === 'compact' ? 'compact' : 'normal';
+          const sel = document.getElementById('densitySelect');
+          if (sel) sel.value = currentDensity;
+        }
+        if (parsed.template && ['ar', 'en', 'bi'].includes(parsed.template)) {
+          currentTemplate = parsed.template;
+          document.querySelectorAll('.tpl-btn').forEach(btn => btn.classList.remove('active'));
+          const activeBtn = document.getElementById('btn-' + currentTemplate);
+          if (activeBtn) activeBtn.classList.add('active');
+        }
+        if (parsed.mainTab && ['self', 'ai'].includes(parsed.mainTab)) {
+          currentMainTab = parsed.mainTab;
+        }
+      } catch (e) {
+        // Ignore storage errors
+      }
+    }
+
+    function onInputChange() {
+      saveState();
+      renderCV();
+    }
+
+    function printCleanCV() {
+      stopSpeaking();
+      stopVoiceRecognition();
+      renderCV();
+      const activeName =
+        (currentTemplate === 'en' ? getFieldVal('enName') : getFieldVal('arName')) ||
+        'CV';
+      const originalTitle = document.title;
+      document.title = activeName.trim();
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.title = originalTitle;
+        }, 300);
+      }, 60);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+      }
+
+      const ansInput = document.getElementById('aiAnswerInput');
+      if (ansInput) {
+        ansInput.addEventListener('input', function () {
+          if (this.value.trim()) {
+            promptConfirmCurrentPart(false);
+          }
+        });
+        ansInput.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            submitAiAnswer();
+          }
+        });
+      }
+
+      loadState();
+      const langSel = document.getElementById('aiTargetLang');
+      if (langSel) {
+        activeAiLang = langSel.value || 'ar';
+      }
+      switchMainTab(currentMainTab);
+      renderCV();
+    });
+  </script>
+</body>
+</html>
